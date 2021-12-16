@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+
+import './product.css';
 
 export interface IProduct {
   in_potential_products: boolean;
@@ -28,11 +29,21 @@ export interface IProductProps {
   data: IProduct;
 }
 
-const Product: React.FC<IProductProps> = ({ data }) => {
-  console.log(data);
+const Product: React.FC<IProductProps> = (data) => {
   return (
     <div className="card">
-      <img src={`${data}`} />
+      <div className="card-top">
+        <img src={`${data.img}`} />
+        <h3>{data.name}</h3>
+      </div>
+      <div className="card-bottom">
+        <p className="price">Price:&nbsp;{data.price}</p>
+        <p className="brand">Brand:&nbsp;{data.brand}</p>
+        <p className="stars">Stars:&nbsp;{data.stars}</p>
+        <a className="buy-btn" href={`${data.link}`}>
+          Buy&nbsp;now
+        </a>
+      </div>
     </div>
   );
 };

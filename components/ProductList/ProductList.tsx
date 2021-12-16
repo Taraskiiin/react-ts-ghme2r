@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react';
 import Product from '../Product/Product';
 import { IProduct } from '../Product/Product';
 
-function ProductList() {
+import './productlist.css';
+
+interface IProductList {
+  search: string;
+}
+
+function ProductList({ search }) {
   const [productList, setProductList] = useState<IProduct[]>([]);
 
   useEffect(() => {
@@ -16,13 +22,14 @@ function ProductList() {
         setProductList(data.products);
       });
   }, []);
-  console.log(productList);
+
+  const filterBySearch = productList.filter((el) =>
+    el.name.toLowerCase().includes(search.toLowerCase())
+  );
   return (
     <div className="wrapper">
-      <ul>
-        {productList.length &&
-          productList.map((el) => <Product key={el.asin} {...el} />)}
-      </ul>
+      {filterBySearch &&
+        filterBySearch.map((el: IProduct) => <Product key={el.asin} {...el} />)}
     </div>
   );
 }
