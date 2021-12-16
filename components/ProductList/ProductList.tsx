@@ -19,7 +19,10 @@ function ProductList() {
   console.log(productList);
   return (
     <div className="wrapper">
-      <ul>{productList.length && <Product />}</ul>
+      <ul>
+        {productList.length &&
+          productList.map((el) => <Product key={el.asin} {...el} />)}
+      </ul>
     </div>
   );
 }

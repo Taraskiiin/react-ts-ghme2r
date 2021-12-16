@@ -24,8 +24,17 @@ export interface IProduct {
   brand: string;
 }
 
-function Product() {
-  return <li></li>
+export interface IProductProps {
+  data: IProduct;
 }
+
+const Product: React.FC<IProductProps> = ({ data }) => {
+  console.log(data);
+  return (
+    <div className="card">
+      <img src={`${data}`} />
+    </div>
+  );
+};
 
 export default Product;
